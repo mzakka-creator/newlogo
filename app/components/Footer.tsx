@@ -22,14 +22,14 @@ export default function Footer({ handleNavClick }: FooterProps) {
               <div className="contact-icon">📞</div>
               <div className="contact-text">
                 <span className="contact-label">Phone</span>
-                <span className="contact-value">+966 553 621 1111</span>
+                <span className="contact-value">0536211111</span>
               </div>
             </div>
             <div className="contact-item">
               <div className="contact-icon">✉</div>
               <div className="contact-text">
                 <span className="contact-label">Email</span>
-                <span className="contact-value">info@newlogo.sa</span>
+                <span className="contact-value">esam@newlogo.sa</span>
               </div>
             </div>
             <div className="social-links">
@@ -63,14 +63,19 @@ export default function Footer({ handleNavClick }: FooterProps) {
             <div className="location-address">
               <div className="location-icon">📍</div>
               <div className="location-text">
-                King Fahd Road<br />
-                Riyadh 12345<br />
+                Prince Mohammed ibn Abdulaziz Rd.<br />
+                Olaya, Riyadh<br />
                 Kingdom of Saudi Arabia
               </div>
             </div>
-            <div className="map-placeholder">
+            <a 
+              href="https://maps.app.goo.gl/gRShmRqjUvCc8z3L9" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="map-placeholder"
+            >
               🗺 View on Map
-            </div>
+            </a>
           </div>
         </div>
 
