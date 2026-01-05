@@ -50,13 +50,6 @@ export default function Footer({ handleNavClick, t, language }: FooterProps) {
                 <a href="mailto:info@newlogo.sa" className="contact-value">info@newlogo.sa</a>
               </div>
             </div>
-            <div className="contact-item">
-              <div className="contact-icon">✉</div>
-              <div className="contact-text">
-                <span className="contact-label">{t.email}</span>
-                <a href="mailto:esam@newlogo.sa" className="contact-value">esam@newlogo.sa</a>
-              </div>
-            </div>
 
             <div className="social-links">
               <a 
