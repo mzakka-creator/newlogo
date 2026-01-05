@@ -9,12 +9,14 @@ import Philosophy from './components/Philosophy';
 import Services from './components/Services';
 import Clients from './components/Clients';
 import Footer from './components/Footer';
+import { translations, Language } from './translations';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState<Language>('en');
 
   // Loading effect
   useEffect(() => {
@@ -48,11 +50,29 @@ export default function Home() {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
-    animatedElements.forEach((el) => observer.observe(el));
+    // Small delay to ensure DOM is updated after language change
+    const timeoutId = setTimeout(() => {
+      const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+      animatedElements.forEach((el) => {
+        // Check if element is already in viewport
+        const rect = el.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        // Re-observe all elements
+        observer.observe(el);
+        
+        // If element is already in viewport, immediately make it visible
+        if (isInViewport) {
+          el.classList.add('visible');
+        }
+      });
+    }, 50);
 
-    return () => observer.disconnect();
-  }, [isLoading]);
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [isLoading, language]);
 
   // Smooth scroll handler
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -64,8 +84,14 @@ export default function Home() {
     setMobileMenuOpen(false);
   };
 
+  const t = translations[language];
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'ar' : 'en');
+  };
+
   return (
-    <>
+    <div dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <Loading isLoading={isLoading} />
       
       <Header
@@ -74,19 +100,31 @@ export default function Home() {
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         handleNavClick={handleNavClick}
+        language={language}
+        setLanguage={setLanguage}
+        t={t.header}
       />
 
-      <Hero handleNavClick={handleNavClick} />
+      <Hero handleNavClick={handleNavClick} t={t.hero} />
       
-      <About />
+      <About t={t.about} />
       
-      <Philosophy />
+      <Philosophy t={t.philosophy} />
       
-      <Services />
+      <Services t={t.services} />
       
-      <Clients />
+      <Clients t={t.clients} />
       
-      <Footer handleNavClick={handleNavClick} />
-    </>
+      <Footer handleNavClick={handleNavClick} t={t.footer} language={language} />
+
+      {/* Floating Language Toggle Button */}
+      <button 
+        className="floating-language-toggle"
+        onClick={toggleLanguage}
+        aria-label="Toggle language"
+      >
+        {language === 'en' ? 'AR' : 'EN'}
+      </button>
+    </div>
   );
 }

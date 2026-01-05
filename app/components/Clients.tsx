@@ -37,13 +37,20 @@ const clients = [
   { name: 'عائد', logo: client2Arabic },
 ];
 
-export default function Clients() {
+interface ClientsProps {
+  t: {
+    title: string;
+    subtitle: string;
+  };
+}
+
+export default function Clients({ t }: ClientsProps) {
   return (
     <section id="clients" className="clients">
       <div className="container">
         <div className="section-header fade-in">
-          <h2>Our Clients</h2>
-          <p>Trusted by leading companies across Saudi Arabia</p>
+          <h2>{t.title}</h2>
+          <p>{t.subtitle}</p>
         </div>
       </div>
       <div className="clients-carousel">

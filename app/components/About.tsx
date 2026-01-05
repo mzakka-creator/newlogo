@@ -1,27 +1,30 @@
-export default function About() {
+interface AboutProps {
+  t: {
+    title: string;
+    paragraph1: string;
+    paragraph2: string;
+    highlight1: string;
+    highlight2: string;
+  };
+}
+
+export default function About({ t }: AboutProps) {
   return (
     <section id="about" className="about">
       <div className="container">
         <div className="about-content">
           <div className="about-text fade-in">
-            <h2>Who Are We</h2>
+            <h2>{t.title}</h2>
             <p>
-              A <span className="highlight">leading Saudi company</span> specializing in brand design, 
-              we aim to create visually powerful identities and logos for Saudi companies and products, 
-              rivaling the strength of <span className="highlight">global logos worldwide</span>.
+              {t.paragraph1.split(t.highlight1)[0]}
+              <span className="highlight">{t.highlight1}</span>
+              {t.paragraph1.split(t.highlight1)[1].split(t.highlight2)[0]}
+              <span className="highlight">{t.highlight2}</span>
+              {t.paragraph1.split(t.highlight2)[1]}
             </p>
             <p>
-              Our mission is to elevate Saudi brands to international standards, 
-              ensuring every identity we create tells a compelling story that resonates 
-              with audiences across cultures and markets.
+              {t.paragraph2}
             </p>
-          </div>
-          <div className="about-visual fade-in-right delay-2">
-            <div className="about-image-container">
-              <div className="about-logo" style={{ color: '#393E46' }}>
-                New<span>Logo</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

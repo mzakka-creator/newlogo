@@ -1,11 +1,14 @@
-import Image from 'next/image';
-import logo from '../assets/logo.png';
-
 interface HeroProps {
   handleNavClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+  t: {
+    title: string;
+    tagline: string;
+    cta: string;
+    scroll: string;
+  };
 }
 
-export default function Hero({ handleNavClick }: HeroProps) {
+export default function Hero({ handleNavClick, t }: HeroProps) {
   return (
     <section id="home" className="hero">
       <div className="hero-background">
@@ -26,27 +29,19 @@ export default function Hero({ handleNavClick }: HeroProps) {
       <div className="hero-overlay"></div>
       
       <div className="hero-content">
-        <div className="hero-logo-wrapper">
-          <Image
-            src={logo}
-            alt="New Logo"
-            width={200}
-            height={200}
-            priority
-            className="hero-logo"
-          />
-        </div>
+        <h1 className="hero-title">
+          {t.title}
+        </h1>
         <p className="hero-tagline">
-          Crafting powerful brand identities that compete on the global stage. 
-          We transform visions into iconic visual stories.
+          {t.tagline}
         </p>
         <a href="#about" className="hero-cta" onClick={(e) => handleNavClick(e, '#about')}>
-          Discover Our Story
+          {t.cta}
         </a>
       </div>
 
       <div className="scroll-indicator">
-        <span>Scroll</span>
+        <span>{t.scroll}</span>
         <div className="scroll-mouse">
           <div className="scroll-wheel"></div>
         </div>

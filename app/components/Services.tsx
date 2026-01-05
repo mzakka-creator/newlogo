@@ -1,30 +1,40 @@
 import { Sparkles, Layers, Target } from 'lucide-react';
 
-const services = [
-  {
-    icon: Sparkles,
-    title: 'Brand Innovation and Design',
-    description: 'We help you create a unique brand identity that reflects the essence of your business, with a professional logo design that expresses your vision and attracts your audience\'s attention.',
-  },
-  {
-    icon: Layers,
-    title: 'Visual Identity Systems',
-    description: 'Complete visual identity packages including color palettes, typography, iconography, and comprehensive brand guidelines for consistent application.',
-  },
-  {
-    icon: Target,
-    title: 'Brand Strategy',
-    description: 'Strategic brand positioning and market analysis to ensure your brand stands out in competitive markets and connects with your target audience.',
-  },
-];
+interface ServicesProps {
+  t: {
+    title: string;
+    subtitle: string;
+    service1: { title: string; description: string };
+    service2: { title: string; description: string };
+    service3: { title: string; description: string };
+  };
+}
 
-export default function Services() {
+export default function Services({ t }: ServicesProps) {
+  const services = [
+    {
+      icon: Sparkles,
+      title: t.service1.title,
+      description: t.service1.description,
+    },
+    {
+      icon: Layers,
+      title: t.service2.title,
+      description: t.service2.description,
+    },
+    {
+      icon: Target,
+      title: t.service3.title,
+      description: t.service3.description,
+    },
+  ];
+
   return (
     <section id="services" className="services">
       <div className="container">
         <div className="section-header fade-in">
-          <h2>Our Services</h2>
-          <p>Comprehensive branding solutions tailored to elevate your business</p>
+          <h2>{t.title}</h2>
+          <p>{t.subtitle}</p>
         </div>
         <div className="services-grid">
           {services.map((service, index) => {

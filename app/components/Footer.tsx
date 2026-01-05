@@ -1,48 +1,80 @@
+import { Instagram } from 'lucide-react';
+import { Language } from '../translations';
+
 interface FooterProps {
   handleNavClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+  t: {
+    contactUs: string;
+    phone: string;
+    email: string;
+    quickLinks: string;
+    ourLocation: string;
+    address: {
+      line1: string;
+      line2: string;
+      line3: string;
+    };
+    viewOnMap: string;
+    copyright: string;
+    tagline: string;
+  };
+  language: Language;
 }
 
-const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'Who Are We', href: '#about' },
-  { name: 'Philosophy', href: '#philosophy' },
-  { name: 'Services', href: '#services' },
-  { name: 'Clients', href: '#clients' },
-];
-
-export default function Footer({ handleNavClick }: FooterProps) {
+export default function Footer({ handleNavClick, t, language }: FooterProps) {
+  const navLinks = [
+    { name: language === 'en' ? 'Home' : 'الرئيسية', href: '#home' },
+    { name: language === 'en' ? 'Who Are We' : 'من نحن', href: '#about' },
+    { name: language === 'en' ? 'Philosophy' : 'فلسفتنا', href: '#philosophy' },
+    { name: language === 'en' ? 'Services' : 'خدماتنا', href: '#services' },
+    { name: language === 'en' ? 'Clients' : 'عملاؤنا', href: '#clients' },
+  ];
   return (
-    <footer id="contact" className="footer">
+    <footer id="contact" className="footer" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="container">
         <div className="footer-content">
           {/* Contact Information */}
           <div className="footer-column fade-in">
-            <h3>Contact Us</h3>
+            <h3>{t.contactUs}</h3>
             <div className="contact-item">
               <div className="contact-icon">📞</div>
               <div className="contact-text">
-                <span className="contact-label">Phone</span>
-                <span className="contact-value">0536211111</span>
+                <span className="contact-label">{t.phone}</span>
+                <a href="tel:+966536211111" className="contact-value">0536211111</a>
               </div>
             </div>
             <div className="contact-item">
               <div className="contact-icon">✉</div>
               <div className="contact-text">
-                <span className="contact-label">Email</span>
-                <span className="contact-value">esam@newlogo.sa</span>
+                <span className="contact-label">{t.email}</span>
+                <a href="mailto:info@newlogo.sa" className="contact-value">info@newlogo.sa</a>
               </div>
             </div>
+            <div className="contact-item">
+              <div className="contact-icon">✉</div>
+              <div className="contact-text">
+                <span className="contact-label">{t.email}</span>
+                <a href="mailto:esam@newlogo.sa" className="contact-value">esam@newlogo.sa</a>
+              </div>
+            </div>
+
             <div className="social-links">
-              <a href="#" className="social-link" aria-label="Twitter">𝕏</a>
-              <a href="#" className="social-link" aria-label="LinkedIn">in</a>
-              <a href="#" className="social-link" aria-label="Instagram">◐</a>
-              <a href="#" className="social-link" aria-label="Behance">Bē</a>
+              <a 
+                href="https://www.instagram.com/newlogo?igsh=MTNzZXMyM2o3eHBsbQ%3D%3D&utm_source=qr" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="social-link" 
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+              <span className="social-account">@newlogo</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="footer-column fade-in delay-1">
-            <h3>Quick Links</h3>
+            <h3>{t.quickLinks}</h3>
             <nav className="quick-links">
               {navLinks.map((link) => (
                 <a
@@ -59,13 +91,13 @@ export default function Footer({ handleNavClick }: FooterProps) {
 
           {/* Location */}
           <div className="footer-column fade-in delay-2">
-            <h3>Our Location</h3>
+            <h3>{t.ourLocation}</h3>
             <div className="location-address">
               <div className="location-icon">📍</div>
               <div className="location-text">
-                Prince Mohammed ibn Abdulaziz Rd.<br />
-                Olaya, Riyadh<br />
-                Kingdom of Saudi Arabia
+                {t.address.line1}<br />
+                {t.address.line2}<br />
+                {t.address.line3}
               </div>
             </div>
             <a 
@@ -74,15 +106,15 @@ export default function Footer({ handleNavClick }: FooterProps) {
               rel="noopener noreferrer"
               className="map-placeholder"
             >
-              🗺 View on Map
+              {t.viewOnMap}
             </a>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p>
-            © {new Date().getFullYear()} <a href="#home">NewLogo</a>. All rights reserved. 
-            Designed with passion in Saudi Arabia.
+            © {new Date().getFullYear()} {t.copyright} 
+            {t.tagline}
           </p>
         </div>
       </div>
