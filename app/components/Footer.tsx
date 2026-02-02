@@ -40,7 +40,7 @@ export default function Footer({ handleNavClick, t, language }: FooterProps) {
               <div className="contact-icon">📞</div>
               <div className="contact-text">
                 <span className="contact-label">{t.phone}</span>
-                <a href="tel:+966536211111" className="contact-value">0536211111</a>
+                <a href="tel:+966536211111" className="contact-value">+966 53 621 1111</a>
               </div>
             </div>
             <div className="contact-item">
