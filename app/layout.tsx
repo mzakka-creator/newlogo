@@ -11,6 +11,9 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "New Logo | Saudi Branding & Graphic Design Company",
   description: "A leading Saudi company specializing in brand design. We create visually powerful identities and logos for Saudi companies and products.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
