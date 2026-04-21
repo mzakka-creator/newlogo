@@ -53,26 +53,10 @@ export default function Clients({ t }: ClientsProps) {
           <p>{t.subtitle}</p>
         </div>
       </div>
-      <div className="clients-carousel">
-        <div className="clients-track">
-          {/* First set of clients */}
+      <div className="container">
+        <div className="clients-grid">
           {clients.map((client, index) => (
-            <div key={`client-1-${index}`} className="client-item">
-              <div className="client-logo-wrapper">
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  width={150}
-                  height={80}
-                  className="client-logo-img"
-                />
-              </div>
-              <div className="client-tooltip">{client.name}</div>
-            </div>
-          ))}
-          {/* Duplicate for seamless loop */}
-          {clients.map((client, index) => (
-            <div key={`client-2-${index}`} className="client-item">
+            <div key={`client-${index}`} className="client-item fade-in">
               <div className="client-logo-wrapper">
                 <Image
                   src={client.logo}

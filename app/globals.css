@@ -1159,52 +1159,17 @@ section {
   overflow: hidden;
 }
 
-.clients-carousel {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 60px 0 40px;
-}
-
-.clients-track {
-  display: flex;
-  animation: scroll-left 30s linear infinite;
-  width: max-content;
-}
-
-.clients-carousel:hover .clients-track {
-  animation-play-state: paused;
-}
-
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes scroll-right {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(50%);
-  }
-}
-
-[dir="rtl"] .clients-track {
-  animation: scroll-right 30s linear infinite;
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 40px 0;
 }
 
 .client-item {
-  flex-shrink: 0;
-  width: 200px;
-  height: 100px;
+  height: 120px;
   background: var(--white);
   border-radius: 15px;
-  margin: 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;
